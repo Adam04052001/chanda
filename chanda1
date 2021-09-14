@@ -8,24 +8,140 @@ def step1():
     while option not in options:
         print('Выберите: {}/{}'.format(*options))
         option = input()
-    
-    if options[option]:
+ 
+    if option == 'да':
         return step2_umbrella()
-    return step2_no_umbrella()
-
+    else:
+        return step2_no_umbrella()
+ 
+ 
+def step2_umbrella():
+    print(
+        'Утка-маляр 🦆 взяла зонтик с собой, а потому и прошла в бар. Там она встретила 2 черных лебедей '
+        'Кинуть им салам? ☂️'
+    )
+    option = ''
+    options = {'да': True, 'нет': False}
+    while option not in options:
+        print('Выберите: {}/{}'.format(*options))
+        option = input()
+ 
+    if option == 'да':
+        return step3_umbrella_salam()
+    else:
+        return step3_umbrella_nosalam()
+ 
+ 
+def step2_no_umbrella():
+    print(
+        'Утка-маляр 🦆 НЕ взяла зонтик с собой и решила остаться на хате. Вечером будет играть Барселона и Реал '
+        'Позвать уцышек на хату?'
+    )
+    option = ''
+    options = {'да': True, 'нет': False}
+    while option not in options:
+        print('Выберите: {}/{}'.format(*options))
+        option = input()
+ 
+    if option == 'да':
+        return step3_no_umbrella_uci()
+    else:
+        return step3_no_umbrella_nouci()
+ 
+ 
+def step3_no_umbrella_uci():
+    print(
+        'Утка-маляр 🦆 НЕ взяла зонтик с собой и решила остаться на хате. Вечером будет играть Барселона и Реал. Она позвала уцышек на хату '
+        'Заказать пиццу?'
+    )
+    option = ''
+    options = {'да': True, 'нет': False}
+    while option not in options:
+        print('Выберите: {}/{}'.format(*options))
+        option = input()
+ 
+    if option == 'да':
+        pass
+        # return step4_no_umbrella_uci_pizza()
+    else:
+        pass
+        # return step4_no_umbrella_uci_nopizza()
+ 
+def step3_no_umbrella_nouci():
+    print(
+        'Утка-маляр 🦆 НЕ взяла зонтик с собой и решила остаться на хате. Вечером будет играть Барселона и Реал. Она решила посмотреть его в одиночестве '
+        'Сварить пельменей?'
+    )
+    option = ''
+    options = {'да': True, 'нет': False}
+    while option not in options:
+        print('Выберите: {}/{}'.format(*options))
+        option = input()
+ 
+    if option == 'да':
+        pass
+        # return step4_no_umbrella_nouci_pelmeni()
+    else:
+        pass
+        # return step4_no_umbrella_nouci_nopelmeni()
+ 
+def step3_umbrella_salam():
+    print(
+        'Утка-маляр 🦆 взяла зонтик с собой, а потому и прошла в бар. Там она встретила 2 черных лебедей и кинула им салам'
+        'Выпить с ними пива?'
+    )
+ 
+    option = ''
+    options = {'да': True, 'нет': False}
+    while option not in options:
+        print('Выберите: {}/{}'.format(*options))
+        option = input()
+ 
+    if option == 'да':
+        pass
+        # return step4_umbrella_salam_beer()
+    else:
+        pass
+        # return step4_umbrella_salam_nobeer()
+ 
+ 
+def step3_umbrella_nosalam():
+    print(
+        'Утка-маляр 🦆 взяла зонтик с собой, а потому и прошла в бар. Там она встретила 2 черных лебедей и НЕ кинула им салам. Лебеди подняли кипиш и 1 полез на нашу утку'
+        'Что делать утке?'
+    )
+ 
+    option = ''
+    options = {'пройти в ноги': True, 'кинуть с пятибалки': False}
+    while option not in options:
+        print('Выберите: {}/{}'.format(*options))
+        option = input()
+ 
+    if option == 'пройти в ноги':
+        return step4_wrestl()
+        # return step4_umbrella_nosalam_beer()
+    else:
+        print('Утка проиграла, потому что соврала спину, пока кидала лебедя. Вернулась домой с разибтым клювом')
+        # return step4_umbrella_nosalam_nobeer()
+    
+def step4_wrestl():
+    print(
+        'Утка-маляр 🦆 повалила одного лебедя.'
+        'Сделать ему болевой?'
+    )
+        
+    option = ''
+    options = {'да': True, 'нет': False}
+    while option not in options:
+        print('Выберите: {}/{}'.format(*options))
+        option = input()
+ 
+    if option == 'да':
+        pass
+        # return step4_umbrella_nosalam_beer()
+    else:
+        pass
+        # return step4_umbrella_nosalam_nobeer()
+ 
 if __name__ == '__main__':
     step1()
-    
-    def step2_umbrella():
-        print(
-            'Утка-маляр 🦆 взяла зонтик с собой, а потому и прошла в бар. Там она встретила 2 черных лебедей '
-            'Кинуть им салам? ☂️'
-        )
-        option1 = ''
-        options1 = {'да': True, 'нет': False}
-        while option1 not in options1:
-            print('Выберите: {}/{}'.format(*options1))
-            option1 = input()
-    if options1[option1]:
-        return step2_umbrella()
-    return step2_no_umbrella()
