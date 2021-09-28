@@ -6,14 +6,14 @@ with open('Corp_Summary-Copy1.csv', 'r', encoding = 'utf-8') as file:
 
 
 def ierarchy():
-departments = {}                                  # создадим словарь для иерархии и будем мутить словарь в словаре
+    departments = {}                                  # создадим словарь для иерархии и будем мутить словарь в словаре
 
-for line in first_data[1:]:                   
-    if line[1] not in departments:
-        departments[line[1]] = [line[2]]
-    if line[2] not in departments[line[1]]:
-        departments[line[1]].append(line[2])
-        
+    for line in first_data[1:]:                   
+        if line[1] not in departments:
+            departments[line[1]] = [line[2]]
+        if line[2] not in departments[line[1]]:
+            departments[line[1]].append(line[2])
+        return departments
         
                                  
 def report():
@@ -32,4 +32,4 @@ def report():
       workers_info[key]["min"] = min(workers_info[key]["Зарплата"])        # найдём минимальное и максимальные значения путём использования встроенных функций в питоне
       workers_info[key]["max"] = max(workers_info[key]["Зарплата"])        
       workers_info[key]['Средняя зарплата'] = round(sum(wor kers_info[key]["Зарплата"]) / workers_info[key]['Численность'])       # найдём среднее значение зарплаты путём суммы всех зарплат, поделённое на численность людей в департаменте
-      return works info
+      return workers_info
