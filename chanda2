@@ -31,9 +31,9 @@ def report(departments):
       wage_info[line[1]]['Зарплата'].append(int(line[-1]))
       workers_info[line[1]]["min"] = min(wage_info[line[1]]["Зарплата"])        # найдём минимальное и максимальные значения путём использования встроенных функций в питоне
       workers_info[line[1]]["max"] = max(wage_info[line[1]]["Зарплата"])        
-      workers_info[line[1]]['Средняя зарплата'] = round(sum(wage_info[line[1]]["Зарплата"]) / workers_info[line[1]]['Численность'])       # найдём среднее значение зарплаты путём суммы всех зарплат, поделённое на численность людей в департаменте
-      
+      workers_info[line[1]]['Средняя зарплата'] = round(sum(wage_info[line[1]]["Зарплата"]) / workers_info[line[1]]['Численность'])       # найдём среднее значение зарплаты путём суммы всех зарплат, поделённое на численность людей в департаменте   
     return workers_info
+
 
 def csv_transform(workers_info):
     header = ['Название департамента','Численность', 'Min', 'Max', 'Средняя зп']
@@ -44,3 +44,21 @@ def csv_transform(workers_info):
         writer = csv.writer(file)
         writer.writerow(header)
         writer.writerows(data)
+
+
+def menu():                                             # создадим пункт меню по аналогии с дз1. Сделаем словарь и введём туда ключи 1,2,3 - идентификаторы получаемых пунктов
+    print(
+        'Выберите пункт меню'
+    )
+    option = ''
+    options = {'1': True, '2': False, '3': False}
+    while option not in options:
+        print('Выберите: {}/{}/{}'.format(*options))
+        option = input()
+ 
+    if option == '1':
+        return ierarchy(first_data)
+    if option == '2':
+        return report(ierarchy(first_data))
+    if option == '3':
+        return csv_transform(report(ierarchy(first_data)))
