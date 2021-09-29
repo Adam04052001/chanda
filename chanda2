@@ -1,3 +1,4 @@
+import csv
 with open('Corp_Summary-Copy1.csv', 'r', encoding = 'utf-8') as file:
     my_reader = csv.reader(file, delimiter = ';') #импортируем наши данные в питон, изменив кодировку
     first_data = []
@@ -5,31 +6,41 @@ with open('Corp_Summary-Copy1.csv', 'r', encoding = 'utf-8') as file:
         first_data.append(row)
 
 
-def ierarchy():
+def ierarchy(first_data):
     departments = {}                                  # создадим словарь для иерархии и будем мутить словарь в словаре
-
     for line in first_data[1:]:                   
         if line[1] not in departments:
             departments[line[1]] = [line[2]]
         if line[2] not in departments[line[1]]:
             departments[line[1]].append(line[2])
-        return departments
+    return departments
         
                                  
-def report():
-  workers_info = {}                                  # создадим новый словарь, куда будем включать наш отчёт
-
-  for line in first_data[1:]:
+def report(departments):
+    workers_info = {}                                  # создадим новый словарь, куда будем включать наш отчёт
+    wage_info = {}
+    for line in first_data[1:]:
       if line[1] not in departments:
          departments[line[1]] = [line[2]]
       if line[2] not in departments[line[1]]:
          departments[line[1]].append(line[2])
       if line[1] not in workers_info:
-          workers_info[line[1]] = {'Численность': 1, 'Зарплата': [int(line[-1])]}
+          workers_info[line[1]] = {'Численность': 1}
+          wage_info[line[1]] = {'Зарплата': [int(line[-1])]}
       workers_info[line[1]]['Численность'] += 1
-      workers_info[line[1]]['Зарплата'].append(int(line[-1]))
-    
-      workers_info[key]["min"] = min(workers_info[key]["Зарплата"])        # найдём минимальное и максимальные значения путём использования встроенных функций в питоне
-      workers_info[key]["max"] = max(workers_info[key]["Зарплата"])        
-      workers_info[key]['Средняя зарплата'] = round(sum(wor kers_info[key]["Зарплата"]) / workers_info[key]['Численность'])       # найдём среднее значение зарплаты путём суммы всех зарплат, поделённое на численность людей в департаменте
-      return workers_info
+      wage_info[line[1]]['Зарплата'].append(int(line[-1]))
+      workers_info[line[1]]["min"] = min(wage_info[line[1]]["Зарплата"])        # найдём минимальное и максимальные значения путём использования встроенных функций в питоне
+      workers_info[line[1]]["max"] = max(wage_info[line[1]]["Зарплата"])        
+      workers_info[line[1]]['Средняя зарплата'] = round(sum(wage_info[line[1]]["Зарплата"]) / workers_info[line[1]]['Численность'])       # найдём среднее значение зарплаты путём суммы всех зарплат, поделённое на численность людей в департаменте
+      
+    return workers_info
+
+def csv_transform(workers_info):
+    header = ['Название департамента','Численность', 'Min', 'Max', 'Средняя зп']
+    data = []
+    for k,v in workers_info.items():
+        data.append(k.split()+list(workers_info[k].values()))
+    with open('report.csv', 'w', encoding='UTF8', newline='') as file: #Вносим итоги в словарь
+        writer = csv.writer(file)
+        writer.writerow(header)
+        writer.writerows(data)
