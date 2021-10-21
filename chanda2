@@ -1,5 +1,5 @@
 import csv
-with open('Corp_Summary-Copy1.csv', 'r', encoding = 'utf-8') as file:
+with open('Corp_Summary.csv', 'r', encoding = 'utf-8') as file:
     my_reader = csv.reader(file, delimiter = ';') #импортируем наши данные в питон, изменив кодировку
     first_data = []
     for row in my_reader:
@@ -20,18 +20,18 @@ def report(departments):
     workers_info = {}                                  # создадим новый словарь, куда будем включать наш отчёт
     wage_info = {}
     for line in first_data[1:]:
-      if line[1] not in departments:
-         departments[line[1]] = [line[2]]
-      if line[2] not in departments[line[1]]:
-         departments[line[1]].append(line[2])
-      if line[1] not in workers_info:
-          workers_info[line[1]] = {'Численность': 1}
-          wage_info[line[1]] = {'Зарплата': [int(line[-1])]}
-      workers_info[line[1]]['Численность'] += 1
-      wage_info[line[1]]['Зарплата'].append(int(line[-1]))
-      workers_info[line[1]]["min"] = min(wage_info[line[1]]["Зарплата"])        # найдём минимальное и максимальные значения путём использования встроенных функций в питоне
-      workers_info[line[1]]["max"] = max(wage_info[line[1]]["Зарплата"])        
-      workers_info[line[1]]['Средняя зарплата'] = round(sum(wage_info[line[1]]["Зарплата"]) / workers_info[line[1]]['Численность'])       # найдём среднее значение зарплаты путём суммы всех зарплат, поделённое на численность людей в департаменте   
+        if line[1] not in departments:
+            departments[line[1]] = [line[2]]
+        if line[2] not in departments[line[1]]:
+            departments[line[1]].append(line[2])
+        if line[1] not in workers_info:
+            workers_info[line[1]] = {'Численность': 1}
+            wage_info[line[1]] = {'Зарплата': [int(line[-1])]}
+        workers_info[line[1]]['Численность'] += 1
+        wage_info[line[1]]['Зарплата'].append(int(line[-1]))
+        workers_info[line[1]]["min"] = min(wage_info[line[1]]["Зарплата"])        # найдём минимальное и максимальные значения путём использования встроенных функций в питоне
+        workers_info[line[1]]["max"] = max(wage_info[line[1]]["Зарплата"])        
+        workers_info[line[1]]['Средняя зарплата'] = round(sum(wage_info[line[1]]["Зарплата"]) / workers_info[line[1]]['Численность'])       # найдём среднее значение зарплаты путём суммы всех зарплат, поделённое на численность людей в департаменте   
     return workers_info
 
 
@@ -46,7 +46,7 @@ def csv_transform(workers_info):
         writer.writerows(data)
 
 
-def menu():                                             # создадим пункт меню по аналогии с дз1. Сделаем словарь и введём туда ключи 1,2,3 - идентификаторы получаемых пунктов
+def menu():                                             # создадим пункт меню по аналогии с дз1. Сделаем словарь и введём туда ключи 1,2,3 - идентификаторы получаемых пунктов. Вызвав функцию menu() мы получим на выбор 3 цифры, соответствующие выполняемому запросу
     print(
         'Выберите пункт меню'
     )
@@ -57,8 +57,8 @@ def menu():                                             # создадим пу�
         option = input()
  
     if option == '1':
-        return ierarchy(first_data)
+        print (ierarchy(first_data))
     if option == '2':
-        return report(ierarchy(first_data))
+        print (report(ierarchy(first_data)))
     if option == '3':
-        return csv_transform(report(ierarchy(first_data)))
+        print (csv_transform(report(ierarchy(first_data))))
