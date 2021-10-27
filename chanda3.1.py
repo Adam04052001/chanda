@@ -13,7 +13,7 @@ class  CountVectorizer:
                 self.wordbank.append(word)
                 
         for i in info:
-            dct = dict.fromkeys(wordbank, 0)
+            dct = dict.fromkeys(self.wordbank, 0)
             for word in element.lower().split():
                 if word in self.wordbank:
                     dct[word] += 1
