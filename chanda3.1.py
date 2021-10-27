@@ -12,7 +12,7 @@ class  CountVectorizer:
             for word in element.lower().split():
                 self.wordbank.append(word)
                 
-        for i in info:
+        for element in info:
             dct = dict.fromkeys(self.wordbank, 0)
             for word in element.lower().split():
                 if word in self.wordbank:
@@ -24,4 +24,5 @@ class  CountVectorizer:
       
     def get_feature_names(self):
          return self.wordbank
+      
       
