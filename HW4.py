@@ -51,7 +51,7 @@ class Advert(ColorizeMixin, ObjectTransformer):
     @price.setter
     def price(self, new_price):
         if new_price < 0:
-            raise ValueError('Price should be greater than 0.')
+            raise ValueError('Price сannot be negetive.')
         self._price = new_price
 
 
