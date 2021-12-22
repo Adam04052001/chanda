@@ -31,8 +31,8 @@ class Pizza():
             raise ValueError(f'Size {size} is not available')
         if size == 'L':
             self.ingridient = ingridient
-        elif size == 'XL':  # если пицца большая, то рецепт удваивается
-            self.ingridient = make_xl_recipe(ingr)
+        elif size == 'XL': 
+            self.ingridient = make_xl_recipe(ingridient)
 
     def dict(self):
         """
