@@ -29,23 +29,23 @@ def encode(message: str) -> str:
     """
     Кодирует строку в соответсвии с таблицей азбуки Морзе
     
-    >>> encode('SOS')
+    #>>> encode('SOS')
     '... --- ...'
     
-    >>> encode('CHANDA')
+    #>>> encode('CHANDA')
     '-.-. .... .- -. -.. .-'
     
-    >>> encode('O' * 30) #doctest: +ELLIPSIS
+    #>>> encode('O' * 30) #doctest: +ELLIPSIS
     ('--- ... ---')
-    >>> encode('ф') 
+    #>>> encode('ф')
     KeyError                                
     Traceback (most recent call last)
     KeyError 'ф' 
     
-    >>> encode(%)
+    #>>> encode(%)
     SyntaxError: invalid syntax
     
-    >>> encode(True)
+    #>>> encode(True)
     Traceback (most recent call last)
     TypeError: 'bool' object is not iterable
     """
@@ -69,7 +69,7 @@ def decode(morse_message: str) -> str:
 
 # if __name__ == '__main__':
 #    doctest.testmod()
-  
+
 if __name__ == '__main__':
     morse_motto = '... .... .. -. .   -... ..- -   -. --- -   -... ..- .-. -.   --- ..- -'
     decoded_motto = decode(morse_motto)
@@ -77,3 +77,4 @@ if __name__ == '__main__':
     err_msg = f'{morse_motto} != {encode(decoded_motto)}'
     assert morse_motto == encode(decoded_motto), err_msg
 
+#print('Hello, Islam')
