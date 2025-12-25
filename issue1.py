@@ -76,3 +76,4 @@ if __name__ == '__main__':
     print(decoded_motto)
     err_msg = f'{morse_motto} != {encode(decoded_motto)}'
     assert morse_motto == encode(decoded_motto), err_msg
+
